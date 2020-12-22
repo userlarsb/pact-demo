@@ -18,8 +18,8 @@ public class GreetingsConsumer {
     }
 
     public String consumeGreeting(String phrase, String name) {
-        ConsumerResponseData response = restTemplate.postForObject(greetingsURL + "greeting",
-                ConsumerRequestData.class,
+        ConsumerResponseData response = restTemplate.postForObject(greetingsURL + "/greeting",
+                new ConsumerRequestData(phrase, name),
                 ConsumerResponseData.class);
         return response.getResponse();
     }

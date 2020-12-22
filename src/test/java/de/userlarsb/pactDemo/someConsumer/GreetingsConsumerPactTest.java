@@ -10,16 +10,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 
 @ExtendWith(PactConsumerTestExt.class)
 class GreetingsConsumerPactTest {
 
+    final String someName = "some name";
+
     @Pact(provider = "GreetingsProvider", consumer = "someConsumer")
     public RequestResponsePact createPact(PactDslWithProvider builder) {
         PactDslJsonBody requestBody = new PactDslJsonBody()
-                .stringType("name", "phrase");
+                .stringType("phrase", "anotherPhrase")
+                .stringValue("name", someName).asBody();
         PactDslJsonBody responseBody = new PactDslJsonBody()
                 .stringType("greeting");
 
@@ -29,10 +30,10 @@ class GreetingsConsumerPactTest {
                 .path("/greeting")
                 .method("POST")
                 .body(requestBody)
+                .headers("Content-Type", "application/json")
                 .willRespondWith()
-                .body(requestBody)
+                .body(responseBody)
                 .toPact();
-
     }
 
     @Test
@@ -40,7 +41,7 @@ class GreetingsConsumerPactTest {
         GreetingsConsumer greetingsConsumer = new GreetingsConsumer(
                 new RestTemplateBuilder().build(),
                 mockServer.getUrl());
-        greetingsConsumer.consumeGreeting("bla", "blubb");
+        greetingsConsumer.consumeGreeting("phrase", someName);
     }
 
 }
