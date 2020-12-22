@@ -6,7 +6,6 @@ plugins {
 
 group = 'de.userlarsb'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -15,6 +14,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation("au.com.dius.pact.consumer:java8:4.1.9")
+	testImplementation("au.com.dius.pact.consumer:junit5:4.1.9")
 }
 
 test {
