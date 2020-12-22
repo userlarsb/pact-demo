@@ -3,7 +3,7 @@
     "name": "GreetingsProvider"
   },
   "consumer": {
-    "name": "someConsumer"
+    "name": "My Happy Consumer"
   },
   "interactions": [
     {

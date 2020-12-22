@@ -3,7 +3,7 @@ package de.userlarsb.pactDemo.someProvider;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class ProviderController {
+public class GreetingsProviderController {
 
     @GetMapping("/greeting")
     public ProviderResponseData createProperGreeting(

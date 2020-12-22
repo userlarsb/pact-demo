@@ -18,11 +18,11 @@ class GreetingsConsumerPactTest {
 
     final String someName = "some name";
 
-    @Pact(provider = "GreetingsProvider", consumer = "someConsumer")
+    @Pact(provider = "GreetingsProvider", consumer = "My Happy Consumer")
     public RequestResponsePact createPact(PactDslWithProvider builder) {
         PactDslJsonBody requestBody = new PactDslJsonBody()
-                .stringType("phrase", "anotherPhrase")
-                .stringValue("name", someName).asBody();
+                .stringType("phrase")
+                .stringValue("name", someName);
         PactDslJsonBody responseBody = new PactDslJsonBody()
                 .stringType("greeting");
 
