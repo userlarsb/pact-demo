@@ -17,8 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest
 @Provider("GreetingsProvider")
 @PactFolder("pacts")
-class ContractVerificationTest {
-
+class GreetingsProviderPactTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -34,6 +33,6 @@ class ContractVerificationTest {
     }
 
     @State("we want to greet someone")
-    public void bla() {
+    public void testGreeting() {
     }
 }
