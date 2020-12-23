@@ -13,7 +13,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 
 
 @ExtendWith(PactConsumerTestExt.class)
-@PactFolder(".")
+@PactFolder("pacts")
 class GreetingsConsumerPactTest {
 
     final String someName = "some name";
