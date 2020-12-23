@@ -6,14 +6,14 @@ import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.core.model.RequestResponsePact;
 import au.com.dius.pact.core.model.annotations.Pact;
-import au.com.dius.pact.core.model.annotations.PactFolder;
+import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 
 
 @ExtendWith(PactConsumerTestExt.class)
-@PactFolder("pacts")
+@PactBroker(host = "localhost", port = "9292")
 class GreetingsConsumerPactTest {
 
     final String someName = "some name";
