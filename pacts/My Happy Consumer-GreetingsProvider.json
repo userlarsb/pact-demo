@@ -1,0 +1,97 @@
+{
+  "provider": {
+    "name": "GreetingsProvider"
+  },
+  "consumer": {
+    "name": "My Happy Consumer"
+  },
+  "interactions": [
+    {
+      "description": "a phrase and a name",
+      "request": {
+        "method": "POST",
+        "path": "/greeting",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "phrase": "string",
+          "name": "some name"
+        },
+        "matchingRules": {
+          "body": {
+            "$.phrase": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.phrase": {
+              "type": "RandomString",
+              "size": 20
+            }
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": {
+          "greeting": "string"
+        },
+        "matchingRules": {
+          "body": {
+            "$.greeting": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        },
+        "generators": {
+          "body": {
+            "$.greeting": {
+              "type": "RandomString",
+              "size": 20
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "we want to greet someone"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.1.9"
+    }
+  }
+}
